@@ -10,7 +10,7 @@ public class Retangulo extends FormaGeometrica{
     @java.lang.Override
     public String toString() {
 
-        return String.format( "[Retangulo] %#.2f / %.2f\n", getLargura(), getAltura());
+        return String.format( "[Retangulo] %#.2f / %.2f", getLargura(), getAltura());
     }
 
     public double getLargura() {
