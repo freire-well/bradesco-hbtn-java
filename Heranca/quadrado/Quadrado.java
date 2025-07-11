@@ -7,7 +7,7 @@ public class Quadrado extends Retangulo {
 
     public void setLado(double lado) {
         if(lado < 0){
-            throw new java.lang.IllegalArgumentException("Lado deve ser maior ou igual a 0 ");
+            throw new java.lang.IllegalArgumentException("Lado deve ser maior ou igual a 0");
         }else{
             this.lado = lado;
             super.setLargura(lado);
@@ -17,6 +17,6 @@ public class Quadrado extends Retangulo {
 
     @java.lang.Override
     public java.lang.String toString() {
-        return String.format("Quadrado %.2f " , lado);
+        return String.format("[Quadrado] %.2f" , lado);
     }
 }
