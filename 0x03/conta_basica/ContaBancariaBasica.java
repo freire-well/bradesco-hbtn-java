@@ -39,8 +39,12 @@ public class ContaBancariaBasica {
     }
 
     public void aplicarAtualizacaoMensal(){
-        saldo -= calcularTarifaMensal();
+        //System.out.println("tarifa: " + calcularTarifaMensal());
         saldo += saldo * (calcularJurosMensal()/100);
+        saldo -= calcularTarifaMensal();
+        //System.out.println("Saldo apos cobranca da tarifa: " + saldo);
+        // System.out.println("juros: " + calcularJurosMensal());
+
     }
 
     public ContaBancariaBasica(String numeracao, double taxaJurosAnual) {
