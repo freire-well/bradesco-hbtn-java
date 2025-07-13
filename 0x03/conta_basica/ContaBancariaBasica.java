@@ -34,13 +34,13 @@ public class ContaBancariaBasica {
         if(saldo < 0){
             return 0;
         }else{
-            return 1;
+            return taxaJurosAnual / 12;
         }
     }
 
     public void aplicarAtualizacaoMensal(){
         saldo -= calcularTarifaMensal();
-        saldo += calcularJurosMensal();
+        saldo += saldo * (calcularJurosMensal()/100);
     }
 
     public ContaBancariaBasica(String numeracao, double taxaJurosAnual) {
