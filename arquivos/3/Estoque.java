@@ -74,7 +74,7 @@ public class Estoque {
         }
     }
 
-    private int pegaProximoId(){
+    private Integer pegaProximoId(){
         int ultimoId = 0;
         try {
             FileReader reader = new FileReader(arquivo);
@@ -124,7 +124,7 @@ public class Estoque {
                 return item;
             }
        }
-       throw new IOException("Não existe produto com este ID");
+       return null;
 
     }
 
