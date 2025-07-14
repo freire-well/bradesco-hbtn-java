@@ -25,7 +25,6 @@ public class Estoque {
         
         Produto produto = new Produto(idGeral, nome, quantidade, preco);
         escreveNoArquivo(produto);
-        System.out.printf("adicionando Produto: %d", idGeral);
         idGeral++;
                   
     }
