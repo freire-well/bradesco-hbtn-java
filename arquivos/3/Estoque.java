@@ -12,7 +12,7 @@ import java.util.List;
 public class Estoque {
     
     String arquivo = "./estoque.csv";
-    int id = 0;
+    int id = 1;
 
     public Estoque(String arquivo){
 
