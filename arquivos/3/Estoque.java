@@ -118,6 +118,7 @@ public class Estoque {
     }
 
     private Produto getProdutoFromId(int id)throws IOException{
+        System.out.printf("tentando pegar produto: %d", id);
        List<Produto> lista = lerTodasAsLinhasCsv();
        for (Produto item : lista) {
             if(item.getId() == id){
