@@ -12,15 +12,16 @@ public class FileWritingExercise{
         String fileName = scanner.nextLine();
         System.out.print("Digite o conteudo do arquivo linha por linha (para parar, digite \"sair\"): ");
         String linha;
-        do{
+        while(true){
             linha = scanner.nextLine();
-
-        }while(!linha.equals("sair"));
+            if(linha.equals("sair")){
+                break;
+            }
+        }
         
 
 
 
         scanner.close();
     }
-}
 }
