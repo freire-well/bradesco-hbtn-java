@@ -31,26 +31,20 @@ public class Estoque {
     }
 
     public void atualizarQuantidade(int id, int quantidade){
-        System.out.printf("tentando atualizar quantidade do produto produto: %d", id);
             List<Produto> linhas = lerTodasAsLinhasCsv();
-            try {
-                Produto produtoASerAlterado = getProdutoFromId(id);
-                produtoASerAlterado.setQuantidade(quantidade);
                for (int i = 0; i < linhas.size(); i++) {
                     if(linhas.get(i).getId() == id){
-                        linhas.set(i, produtoASerAlterado);
+                        linhas.get(i).setQuantidade(quantidade);
+                        linhas.set(i, linhas.get(i));
                     }
                }
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
+            
             
              
 
     }
 
     public void excluirProduto(int id){
-        System.out.printf("tentando excluir produto produto: %d", id);
         List<Produto> lista = lerTodasAsLinhasCsv();
         for (int i = 0; i < lista.size(); i++) {
             if(lista.get(i).getId() == id){
@@ -101,18 +95,6 @@ public class Estoque {
             System.out.println(e.getMessage());
             return null;
          }
-
-    }
-
-    private Produto getProdutoFromId(int id)throws IOException{
-        System.out.printf("tentando pegar produto: %d", id);
-       List<Produto> lista = lerTodasAsLinhasCsv();
-       for (Produto item : lista) {
-            if(item.getId() == id){
-                return item;
-            }
-       }
-       return null;
 
     }
 
