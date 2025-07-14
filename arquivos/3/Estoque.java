@@ -12,7 +12,7 @@ import java.util.List;
 public class Estoque {
     
     String arquivo = "./estoque.csv";
-    int id = 1;
+    int idGeral = 0;
 
     public Estoque(String arquivo){
 
@@ -22,14 +22,16 @@ public class Estoque {
 
 
     public void adicionarProduto(String nome, int quantidade, double preco){
-        Produto produto = new Produto(id, nome, quantidade, preco);
-           escreveNoArquivo(produto);
-           id++;
+        
+        Produto produto = new Produto(idGeral, nome, quantidade, preco);
+        escreveNoArquivo(produto);
+        System.out.printf("adicionando Produto: %d", id);
+        idGeral++;
                   
     }
 
     public void atualizarQuantidade(int id, int quantidade){
-
+        System.out.printf("tentando atualizar quantidade do produto produto: %d", id);
             List<Produto> linhas = lerTodasAsLinhasCsv();
             try {
                 Produto produtoASerAlterado = getProdutoFromId(id);
@@ -48,6 +50,7 @@ public class Estoque {
     }
 
     public void excluirProduto(int id){
+        System.out.printf("tentando excluir produto produto: %d", id);
         List<Produto> lista = lerTodasAsLinhasCsv();
         for (int i = 0; i < lista.size(); i++) {
             if(lista.get(i).getId() == id){
