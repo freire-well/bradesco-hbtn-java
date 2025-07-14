@@ -12,6 +12,7 @@ import java.util.List;
 public class Estoque {
     
     String arquivo = "./estoque.csv";
+    int id = 0;
 
     public Estoque(String arquivo){
 
@@ -21,8 +22,9 @@ public class Estoque {
 
 
     public void adicionarProduto(String nome, int quantidade, double preco){
-        Produto produto = new Produto(pegaProximoId(), nome, quantidade, preco);
+        Produto produto = new Produto(id, nome, quantidade, preco);
            escreveNoArquivo(produto);
+           id++;
                   
     }
 
@@ -74,25 +76,7 @@ public class Estoque {
         }
     }
 
-    private Integer pegaProximoId(){
-        int ultimoId = 0;
-        try {
-            FileReader reader = new FileReader(arquivo);
-            BufferedReader buff = new BufferedReader(reader);
-            String linha;
-            while ((linha = buff.readLine()) != null) {
-                ultimoId = Integer.parseInt(linha.split(",")[0]);
-            }
-            buff.close();
-            return ultimoId;
-        } catch (FileNotFoundException e) {
-           System.out.println(e.getMessage());
-           return 0;
-        }catch (IOException e) {
-            System.out.println(e.getMessage());
-         }
-         return 0;
-    }
+    
 
     private List<Produto> lerTodasAsLinhasCsv(){
         List<Produto> lista = new ArrayList<>();
