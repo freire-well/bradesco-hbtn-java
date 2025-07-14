@@ -18,6 +18,7 @@ public class CsvFileReader {
                 System.out.printf("Salarial: %s\n", func[3]);
                 System.out.println("------------------------");
             }
+            System.out.println("Leitura do arquivo concluída.");
            reader.close();
         }catch(FileNotFoundException e){
             System.out.println(e.getMessage());
