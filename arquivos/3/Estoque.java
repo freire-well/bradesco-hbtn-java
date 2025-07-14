@@ -18,67 +18,47 @@ public class Estoque {
     }
     
 
-    private void criarArquivo(){
-       try {
-            if(!verificaExistenciaArquivo()){
-                Files.createFile(Paths.get(arquivo));
-            }
-       } catch (IOException e) {
-            System.out.println(e.getMessage());
 
-       }
-    }
-
-    private boolean verificaExistenciaArquivo(){
-        return Files.exists(Paths.get(arquivo));
-    }
 
     public void adicionarProduto(String nome, int quantidade, double preco){
         Produto produto = new Produto(pegaProximoId(), nome, quantidade, preco);
-        if(verificaExistenciaArquivo()){
            escreveNoArquivo(produto);
-           
-        }else{
-            criarArquivo();
-            escreveNoArquivo(produto);
-        }
+                  
     }
 
     public void atualizarQuantidade(int id, int quantidade){
-        if(verificaExistenciaArquivo()){
-            List<String> linhas = lerTodasAsLinhasCsv();
-            for (String item : linhas) {
-                if(item.split(",")[0].equals(id)){
-                    
-                }
+
+            List<Produto> linhas = lerTodasAsLinhasCsv();
+            try {
+                Produto produtoASerAlterado = getProdutoFromId(id);
+                produtoASerAlterado.setQuantidade(quantidade);
+               for (int i = 0; i < linhas.size(); i++) {
+                    if(linhas.get(i).getId() == id){
+                        linhas.set(i, produtoASerAlterado);
+                    }
+               }
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
             }
-        }
+            
+             
+
     }
 
     public void excluirProduto(int id){
-        if(verificaExistenciaArquivo()){
-            try {
-                FileReader reader = new FileReader(arquivo);
-                BufferedReader buff = new BufferedReader(reader);
-                String linha;
-                while ((linha = buff.readLine()) != null) {
-                    if(linha.split(",")[0].equals(id)){
-                       
-                    }
-                }
-                buff.close();
-            } catch (FileNotFoundException e) {
-               System.out.println(e.getMessage());
-            }catch (IOException e) {
-                System.out.println(e.getMessage());
-             }
-
+        List<Produto> lista = lerTodasAsLinhasCsv();
+        for (int i = 0; i < lista.size(); i++) {
+            if(lista.get(i).getId() == id){
+                lista.remove(i);
+            }
         }
+        reescreverArquivo(lista);
     }
 
     public void exibirEstoque(){
-        if(verificaExistenciaArquivo()){
-            
+        List<Produto> listaProduto = lerTodasAsLinhasCsv();
+        for (Produto produto : listaProduto) {
+            System.out.printf("ID: %d, Nome: %s, Quantidade: %d, Preço: %.1f/n", produto.getId(), produto.getNome(), produto.getQuantidade(), produto.getPreco());
         }
     }
 
@@ -114,14 +94,16 @@ public class Estoque {
          return 0;
     }
 
-    private List<String> lerTodasAsLinhasCsv(){
-        List<String> lista = new ArrayList<>();
+    private List<Produto> lerTodasAsLinhasCsv(){
+        List<Produto> lista = new ArrayList<>();
         try {
             FileReader reader = new FileReader(arquivo);
             BufferedReader buff = new BufferedReader(reader);
             String linha;
             while ((linha = buff.readLine()) != null) {
-                lista.add(linha);
+                String[] produtoString = linha.split(",");
+                Produto produto = new Produto(Integer.parseInt(produtoString[0]),produtoString[1],Integer.parseInt(produtoString[2]),Double.valueOf(produtoString[3]) );
+                lista.add(produto);
             }
             buff.close();
             return lista;
@@ -135,12 +117,25 @@ public class Estoque {
 
     }
 
-    private void escreverTodasLinhasArquivo(List<String> lista){
+    private Produto getProdutoFromId(int id)throws IOException{
+       List<Produto> lista = lerTodasAsLinhasCsv();
+       for (Produto item : lista) {
+            if(item.getId() == id){
+                return item;
+            }
+       }
+       throw new IOException("Não existe produto com este ID");
+
+    }
+
+    private void reescreverArquivo(List<Produto> lista){
         try {
             FileWriter writer = new FileWriter(arquivo);
             BufferedWriter buff = new BufferedWriter(writer);
-            for (String linha : lista) {
-                buff.write(linha);
+            Files.delete(Paths.get(arquivo));
+            Files.createFile(Paths.get(arquivo));
+            for (Produto produto : lista) {
+                buff.write(produto.toCsv());
                 buff.close();
             }
             
