@@ -11,7 +11,7 @@ public class Estoque {
     
     String arquivo = "./estoque.csv";
     int idGeral = 0;
-
+    int passo = 0;
     public Estoque(String arquivo){
 
     }
@@ -23,16 +23,13 @@ public class Estoque {
         
         Produto produto = new Produto(idGeral, nome, quantidade, preco);
         List<Produto> lista =lerTodasAsLinhasCsv();
-       /* if(!lista.isEmpty()){
-            idGeral = lista.get(lista.size() - 1).getId() + 1;
-            produto.setId(idGeral);
-        }*/
         escreveNoArquivo(produto);
         idGeral++;
-                  
+        System.out.printf("Adicionar, passo:  %d\n", passo++);
     }
 
     public void atualizarQuantidade(int id, int quantidade){
+        System.out.printf("Atualizar Quantidade, passo:  %d\n", passo++);
             List<Produto> linhas = lerTodasAsLinhasCsv();
                for (int i = 0; i < linhas.size(); i++) {
                     if(linhas.get(i).getId() == id){
@@ -48,6 +45,7 @@ public class Estoque {
     }
 
     public void excluirProduto(int id){
+        System.out.printf("Excluir, passo:  %d\n", passo++);
         List<Produto> lista = lerTodasAsLinhasCsv();
         for (int i = 0; i < lista.size(); i++) {
             if(lista.get(i).getId() == id){
@@ -58,6 +56,7 @@ public class Estoque {
     }
 
     public void exibirEstoque(){
+        System.out.printf("Exibir Estoque, passo:  %d\n", passo++);
         List<Produto> listaProduto = lerTodasAsLinhasCsv();
         for (Produto produto : listaProduto) {
             System.out.printf("ID: %d, Nome: %s, Quantidade: %d, Preço: %.1f\n", produto.getId(), produto.getNome(), produto.getQuantidade(), produto.getPreco());
