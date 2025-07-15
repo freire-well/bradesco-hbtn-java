@@ -23,7 +23,9 @@ public class ArrayExercicio {
             if(i==0){
                 maiorNumero = numeroAtual;
             }else{
-                maiorNumero = numeroAtual > maiorNumero ? maiorNumero : numeroAtual;
+                if(numeroAtual > maiorNumero){
+                    maiorNumero = numeroAtual;
+                } 
             }
             soma += numeroAtual;
         }
