@@ -4,8 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +22,11 @@ public class Estoque {
     public void adicionarProduto(String nome, int quantidade, double preco){
         
         Produto produto = new Produto(idGeral, nome, quantidade, preco);
+        List<Produto> lista =lerTodasAsLinhasCsv();
+        if(!lista.isEmpty()){
+            idGeral = lista.get(lista.size() - 1).getId() + 1;
+            produto.setId(idGeral);
+        }
         escreveNoArquivo(produto);
         idGeral++;
                   
@@ -33,12 +36,13 @@ public class Estoque {
             List<Produto> linhas = lerTodasAsLinhasCsv();
                for (int i = 0; i < linhas.size(); i++) {
                     if(linhas.get(i).getId() == id){
-                        linhas.get(i).setQuantidade(quantidade);
-                        linhas.set(i, linhas.get(i));
+                        Produto prod = linhas.get(i);
+                        prod.setQuantidade(quantidade);
+                        linhas.set(i, prod);
                     }
                }
             
-            
+            reescreverArquivo(linhas);
              
 
     }
@@ -106,12 +110,11 @@ public class Estoque {
         try {
             FileWriter writer = new FileWriter(arquivo);
             BufferedWriter buff = new BufferedWriter(writer);
-            Files.delete(Paths.get(arquivo));
-            Files.createFile(Paths.get(arquivo));
+            
             for (Produto produto : lista) {
-                buff.write(produto.toCsv());
-                buff.close();
+                buff.write(produto.toCsv()+"\n");
             }
+            buff.close();
             
             
         } catch (IOException e) {
