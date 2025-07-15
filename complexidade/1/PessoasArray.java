@@ -22,14 +22,14 @@ public class PessoasArray {
         boolean encontrado = false;
         System.out.printf("Procurando pelo nome: \"%s\"\n", nome);
         for (int i = 0; i < nomes.length ; i++) {
-            System.out.printf("Passando pelo indice: %d", i);
+            System.out.printf("Passando pelo indice: %d\n", i);
             if(nomes[i] == nome){
-                System.out.printf("Nome pesquisado é %s que está na posição %d", nome, i);
+                System.out.printf("Nome pesquisado é %s que está na posição %d\n", nome, i);
                 encontrado = true;
             }
         }
         if(!encontrado){
-            throw new IllegalArgumentException(String.format("O nome %s não se encontra no array de nomes", nome));
+            throw new IllegalArgumentException(String.format("O nome %s não se encontra no array de nomes\n", nome));
         }
     }
 
