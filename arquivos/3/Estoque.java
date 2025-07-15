@@ -22,6 +22,12 @@ public class Estoque {
         
         Produto produto = new Produto(idGeral, nome, quantidade, preco);
         List<Produto> lista =lerTodasAsLinhasCsv();
+        if(!lista.isEmpty()){
+        if(!lista.isEmpty()){
+            idGeral = lista.get(lista.size() - 1).getId() + 1;
+            produto.setId(idGeral);
+        }
+        }
         escreveNoArquivo(produto);
         idGeral++;
     }
