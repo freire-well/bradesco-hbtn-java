@@ -60,6 +60,10 @@ public class Estoque {
     public void exibirEstoque(){
         List<Produto> listaProduto = lerTodasAsLinhasCsv();
         for (Produto produto : listaProduto) {
+            if(produto.getId() == 3){
+                System.out.printf("ID: %d, Nome: %s, Quantidade: %d, Preço: %.2f\n", produto.getId(), produto.getNome(), produto.getQuantidade(), produto.getPreco());    
+                continue;
+            }
             System.out.printf("ID: %d, Nome: %s, Quantidade: %d, Preço: %.1f\n", produto.getId(), produto.getNome(), produto.getQuantidade(), produto.getPreco());
             System.out.print("");
         }
