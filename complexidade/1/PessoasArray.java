@@ -23,7 +23,7 @@ public class PessoasArray {
         System.out.printf("Procurando pelo nome: \"%s\"\n", nome);
         for (int i = 0; i < nomes.length ; i++) {
             System.out.printf("Passando pelo indice: %d", i);
-            if(nomes[i]==nome){
+            if(nomes[i] == nome){
                 System.out.printf("Nome pesquisado é %s que está na posição %d", nome, i);
                 encontrado = true;
             }
@@ -31,5 +31,10 @@ public class PessoasArray {
         if(!encontrado){
             throw new IllegalArgumentException(String.format("O nome %s não se encontra no array de nomes", nome));
         }
+    }
+
+    public void test(){
+        int i =0;
+        if(nomes[i] == "maria");
     }
 }
