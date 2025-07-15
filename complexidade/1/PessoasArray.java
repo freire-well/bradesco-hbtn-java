@@ -29,7 +29,7 @@ public class PessoasArray {
             }
         }
         if(!encontrado){
-            throw new IllegalArgumentException(String.format("O nome %s não se encontra no array de nomes\n", nome));
+            throw new IllegalArgumentException(String.format("O nome %s não se encontra no array de nomes", nome));
         }
     }
 
