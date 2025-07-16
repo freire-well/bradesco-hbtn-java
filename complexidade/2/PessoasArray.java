@@ -25,13 +25,13 @@ public class PessoasArray {
         System.out.printf("Procurando o nome: \"%s\"\n",nome);
         while (left <= right){
             int mid = (left + right) / 2;
-            System.out.println("passando pelo indice: " + mid);
+            System.out.println("Passando pelo indice: " + mid);
             if(nomes[mid].compareTo(nome) < 0 ){
                 left = mid + 1;
             } else if (nomes[mid].compareTo(nome) > 0) {
                 right = mid - 1;
             }else{
-                System.out.printf("nome %s encontrado na posicao: %d\n",nome, mid);
+                System.out.printf("Nome %s encontrado na posição %d\n",nome, mid);
                 encontrado = true;
                 break;
             }
