@@ -26,18 +26,17 @@ public class PessoasArray {
         while (left <= right){
             int mid = (left + right) / 2;
             System.out.println("passando pelo indice: " + mid);
-            if(nomes[mid].charAt(0) < nome.charAt(0)){
+            if(nomes[mid].compareTo(nome) < 0 ){
                 left = mid + 1;
-            } else if (nomes[mid].charAt(0) > nome.charAt(0)) {
+            } else if (nomes[mid].compareTo(nome) > 0) {
                 right = mid - 1;
             }else{
                 System.out.printf("nome %s encontrado na posicao: %d\n",nome, mid);
                 encontrado = true;
-
                 break;
             }
-
         }
+        if(!encontrado) throw new IllegalArgumentException(String.format("O nome %s não se encontra no array de nomes", nome));
 
 
 
