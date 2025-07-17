@@ -22,7 +22,7 @@ public class ManipularArrayNumeros {
         try{
             arrayList.remove(buscarPosicaoNumero(arrayList, numero));
         }catch (Exception e){
-            throw new IllegalArgumentException("Numero jah contido na lista");
+            throw new IllegalArgumentException("Numero nao encontrado na lista");
         }
     }
     public static void substituirNumero(List<Integer> arrayList, int numeroASubstituir, int novoNumero){
