@@ -21,7 +21,7 @@ public class Blog {
     }
 
     public Map<String, Integer> obterContagemPorCategoria(){
-        Map<String, Integer> map = new HashMap<>();
+        Map<String, Integer> map = new TreeMap<>();
         for (int i = 0; i < postagens.size(); i++) {
             String categoriaLista = postagens.get(i).getCategoria();
             map.merge(categoriaLista, 1, Integer::sum);
