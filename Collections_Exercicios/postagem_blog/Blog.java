@@ -10,18 +10,22 @@ public class Blog {
     }
 
     public void adicionarPostagem(Post postagem){
-        if(postagens.contains(postagem)){
-            throw new IllegalArgumentException("Postagem jah existe");
-        }else{
-            postagens.add(postagem);
+        for(Post post: postagens){
+            int sum = 0;
+            sum += post.getAutor().compareTo(postagem.getAutor());
+            sum += post.getTitulo().compareTo(postagem.getTitulo());
+            if(sum == 0){
+                throw new IllegalArgumentException("Postagem jah existente");
+            }
         }
+        postagens.add(postagem);
     }
 
     public Set<Post>obterPostsPorAutor(Autor autor){
         Set<Post> temp = new LinkedHashSet<>();
 
         for(Post post : postagens){
-            if(post.getAutor().compareTo(autor) != 0){
+            if(post.getAutor().compareTo(autor) == 0){
                 temp.add(post);
             }
         }
@@ -34,7 +38,7 @@ public class Blog {
         Set<Post> temp = new LinkedHashSet<>();
 
         for(Post post : postagens){
-            if(post.getCategoria().compareTo(categorias) != 0){
+            if(post.getCategoria().compareTo(categorias) == 0){
                 temp.add(post);
             }
         }
@@ -44,7 +48,7 @@ public class Blog {
     }
 
     public Map<Categorias, Set<Post>>obterTodosPostsPorCategorias(){
-        Map<Categorias, Set<Post>> temp = new LinkedHashMap<>();
+        Map<Categorias, Set<Post>> temp = new TreeMap<>();
 
         for(Post post : postagens){
             temp.put(post.getCategoria(), obterPostsPorCategoria(post.getCategoria()));
@@ -55,10 +59,10 @@ public class Blog {
     }
 
     public Map<Autor, Set<Post>>obterTodosPostsPorAutor(){
-        Map<Autor, Set<Post>> temp = new LinkedHashMap<>();
+        Map<Autor, Set<Post>> temp = new TreeMap<>();
 
         for(Post post : postagens){
-            temp.put(post.getAutor(), obterPostsPorCategoria(post.getCategoria()));
+            temp.put(post.getAutor(), obterPostsPorAutor(post.getAutor()));
         }
         return temp;
     }
@@ -75,7 +79,7 @@ public class Blog {
 
 
     public Map<Categorias, Integer> obterContagemPorCategoria(){
-        Map<Categorias, Integer> map = new HashMap<>();
+        Map<Categorias, Integer> map = new TreeMap<>();
         for (Post postagem : postagens) {
             map.merge(postagem.getCategoria(), 1, Integer::sum);
         }

@@ -50,6 +50,6 @@ public class Post implements Comparable{
 
     @Override
     public int compareTo(Object o) {
-        return 0;
+        return this.getTitulo().compareTo(o.toString());
     }
 }

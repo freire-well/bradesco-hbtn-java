@@ -31,6 +31,6 @@ public class Autor implements Comparable{
 
     @Override
     public int compareTo(Object o) {
-        return 0;
+        return this.toString().compareTo(o.toString());
     }
 }
