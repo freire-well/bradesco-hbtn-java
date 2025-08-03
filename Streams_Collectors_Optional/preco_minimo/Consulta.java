@@ -8,6 +8,8 @@ public class Consulta {
     }
 
     public static List<Produto>  obterProdutosPorPrecoMinimo(List<Produto> produtoList, double precoMinimo){
-        return  produtoList.stream().filter(produto -> produto.getPreco() > precoMinimo).collect(Collectors.toList());
+        return  produtoList.stream().filter(produto -> produto.getPreco() >= precoMinimo).collect(Collectors.toList());
     }
+
+
 }
