@@ -13,7 +13,7 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return String.format("[%s, %s]", codigo, cliente.getNome());
+        return String.format("[%s] %s", codigo, cliente.getNome());
     }
 
     public int getCodigo() {
