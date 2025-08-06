@@ -10,7 +10,6 @@ public class Consumidor extends Thread{
     public void consumir(){
         fila.retirar();
         try {
-            notifyAll();
             Thread.sleep(500);
             System.out.println("Consumidor consumiu " + count++);
 

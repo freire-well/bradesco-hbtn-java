@@ -15,7 +15,6 @@ public class Produtor extends Thread{
 
         try {
             fila.adicionar(numeroAAcrescentar);
-            notifyAll();
             Thread.sleep(1000);
             System.out.println("Produtor produziu " + numeroAAcrescentar);
         } catch (InterruptedException e) {

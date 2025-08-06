@@ -14,6 +14,7 @@ public class Fila {
             wait();
         }else{
             this.fila.add(i);
+            notifyAll();
         }
 
     }
@@ -27,6 +28,7 @@ public class Fila {
             }
         }else{
             this.fila.removeFirst();
+            notifyAll();
         }
     }
 
