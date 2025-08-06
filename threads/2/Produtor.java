@@ -10,11 +10,15 @@ public class Produtor extends Thread{
         random = new Random();
     }
 
-    private void produzir() {
+    private synchronized void produzir() {
         numeroAAcrescentar = random.nextInt(100);
 
         try {
+            if(fila.getFila().size() == fila.getCapacidade()){
+            wait(500);
+        }
             fila.adicionar(numeroAAcrescentar);
+            notify();
             Thread.sleep(1000);
             System.out.println("Produtor produziu " + numeroAAcrescentar);
         } catch (InterruptedException e) {

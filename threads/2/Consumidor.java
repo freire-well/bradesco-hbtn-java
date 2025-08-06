@@ -7,10 +7,19 @@ public class Consumidor extends Thread{
         this.fila = fila;
     }
 
-    public void consumir(){
+    public synchronized void consumir(){
+        if(fila.getFila().isEmpty()) {
+            try {
+                wait(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
         fila.retirar();
         try {
+
             Thread.sleep(500);
+            notify();
             System.out.println("Consumidor consumiu " + count++);
 
         } catch (InterruptedException e) {

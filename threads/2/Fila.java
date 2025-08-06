@@ -9,27 +9,21 @@ public class Fila {
         this.capacidade = tamanho;
     }
 
+    public int getCapacidade() {
+        return capacidade;
+    }
+
     public synchronized void adicionar(int i) throws InterruptedException {
-        if(fila.size() == capacidade){
-            wait();
-        }else{
+
             this.fila.add(i);
             notifyAll();
-        }
 
     }
 
     public synchronized void retirar(){
-        if(fila.isEmpty()) {
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }else{
-            this.fila.removeFirst();
-            notifyAll();
-        }
+        this.fila.removeFirst();
+        notifyAll();
+
     }
 
     public LinkedList<Integer> getFila() {
