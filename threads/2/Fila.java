@@ -10,25 +10,23 @@ public class Fila {
     }
 
     public synchronized void adicionar(int i) throws InterruptedException {
-        if(fila.size() < tamanho){
-            this.fila.add(i);
-            notifyAll();
-        }else{
+        if(fila.size() == tamanho){
             wait();
+        }else{
+            this.fila.add(i);
         }
 
     }
 
     public synchronized void retirar(){
-        if(!fila.isEmpty()) {
-            this.fila.removeFirst();
-            notifyAll();
-        }else{
+        if(fila.isEmpty()) {
             try {
                 wait();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+        }else{
+            this.fila.removeFirst();
         }
     }
 
