@@ -20,12 +20,11 @@ public class SistemaFilas {
             t2.start();
             t3.start();
             t4.start();
+
             while (time < 20){
                 Thread.sleep(1000);
                 time++;
             }
-            c.consumir = false;
-            p.produzir = false;
 
             System.exit(0);
 

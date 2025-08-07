@@ -16,14 +16,13 @@ public class Fila {
     public synchronized void adicionar(int i) throws InterruptedException {
 
             this.fila.add(i);
-            notifyAll();
-
+            notify();
     }
 
     public synchronized void retirar(){
+        System.out.println("Consumidor consumiu " + fila.getFirst());
         this.fila.removeFirst();
-        notifyAll();
-
+        notify();
     }
 
     public LinkedList<Integer> getFila() {
