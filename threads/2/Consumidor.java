@@ -11,7 +11,6 @@ public class Consumidor extends Thread{
         try {
             for (int i = 0; true;) {
                 fila.retirar();
-                notify();
                 Thread.sleep(500);
 
 

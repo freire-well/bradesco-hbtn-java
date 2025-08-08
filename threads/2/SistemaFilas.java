@@ -21,10 +21,7 @@ public class SistemaFilas {
             t3.start();
             t4.start();
 
-            while (time < 20){
-                Thread.sleep(1000);
-                time++;
-            }
+            Thread.sleep(20000);
 
             System.exit(0);
 
