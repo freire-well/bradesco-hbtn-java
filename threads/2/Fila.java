@@ -20,7 +20,7 @@ public class Fila {
     }
 
     public synchronized void retirar(){
-        System.out.println("Consumidor consumiu " + fila.getFirst());
+        System.out.println("Consumidor consumiu: " + fila.getFirst());
         this.fila.removeFirst();
         notify();
     }

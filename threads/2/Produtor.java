@@ -22,7 +22,7 @@ public class Produtor extends Thread{
                     this.wait();
                 }
                 fila.adicionar(numeroAAcrescentar);
-                System.out.println("Produtor produziu " + numeroAAcrescentar);
+                System.out.println("Produtor produziu: " + numeroAAcrescentar);
                 notify();
                 Thread.sleep(1000);
             } catch (InterruptedException e) {

@@ -11,7 +11,6 @@ public class Consumidor extends Thread{
         try {
             for (int i = 0; true;) {
                 if(fila.getFila().isEmpty()) {
-                    System.out.println("Consumidor bateu numa lista vazia");
                     this.wait(500);
                 }
                 fila.retirar();
