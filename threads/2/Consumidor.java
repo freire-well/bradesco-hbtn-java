@@ -10,9 +10,6 @@ public class Consumidor extends Thread{
     public synchronized void consumir(){
         try {
             for (int i = 0; true;) {
-                if(fila.getFila().isEmpty()) {
-                    this.wait(500);
-                }
                 fila.retirar();
                 notify();
                 Thread.sleep(500);

@@ -18,9 +18,6 @@ public class Produtor extends Thread{
             numeroAAcrescentar = random.nextInt(1, 100);
 
             try {
-                if (fila.getFila().size() == fila.getCapacidade()) {
-                    this.wait();
-                }
                 fila.adicionar(numeroAAcrescentar);
                 System.out.println("Produtor produziu: " + numeroAAcrescentar);
                 notify();

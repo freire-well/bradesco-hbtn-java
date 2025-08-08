@@ -14,12 +14,17 @@ public class Fila {
     }
 
     public synchronized void adicionar(int i) throws InterruptedException {
-
+            while(this.fila.size() == capacidade){
+                wait();
+            }
             this.fila.add(i);
             notify();
     }
 
-    public synchronized void retirar(){
+    public synchronized void retirar() throws InterruptedException{
+        while(this.fila.isEmpty()){
+            wait();
+        }
         System.out.println("Consumidor consumiu: " + fila.getFirst());
         this.fila.removeFirst();
         notify();
