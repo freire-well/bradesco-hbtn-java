@@ -4,9 +4,9 @@ public class Fila {
     private LinkedList<Integer> fila;
     private final int capacidade;
 
-    public Fila( int tamanho) {
+    public Fila( int capacidade) {
         this.fila = new LinkedList<>();
-        this.capacidade = tamanho;
+        this.capacidade = capacidade;
     }
 
     public int getCapacidade() {

@@ -15,7 +15,7 @@ public class Produtor extends Thread{
 
         for (int i = 0; true;) {
 
-            numeroAAcrescentar = random.nextInt(100);
+            numeroAAcrescentar = random.nextInt(1, 100);
 
             try {
                 if (fila.getFila().size() == fila.getCapacidade()) {
