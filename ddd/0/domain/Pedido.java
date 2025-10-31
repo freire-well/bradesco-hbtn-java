@@ -33,12 +33,12 @@ public class Pedido {
 
 
     public void pagar() {
-        //implementar
+        StatusPedido.PAGO;
     }
 
 
     public void cancelar() {
-        //implementar
+        StatusPedido.CANCELADO;
     }
 
 
