@@ -7,7 +7,7 @@ import infrastructure.PedidoRepository;
 public class PedidoService {
     PedidoRepository rep = new PedidoRepository();
 
-    public void save(){
-        rep.salvar(new Pedido(new Cliente()));
+    public void save(Pedido pedido){
+        rep.salvar(pedido);
     }
 }
